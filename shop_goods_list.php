@@ -18,8 +18,6 @@ header("Access-Control-Allow-Origin: *");
 require_once("connMysql.php");
 
 //選擇資料庫
-// $sql = "SELECT shop_s.s_name,shop_s.s_slogan,good_s.g_name,good_s.g_description,good_s.g_price FROM shop_s INNER JOIN good_s ON shop_s.s_num=good_s.s_num  where shop_s.s_num = $data_shop_num";
-// $sql = "SELECT shop_s.s_name,shop_s.s_slogan,good_s.g_name,good_s.g_description,good_s.g_price,orderdetail_s.g_rating,AVG(shopcomment_s.s_rating) FROM shop_s INNER JOIN good_s ON shop_s.s_num = good_s.s_num INNER JOIN shopcomment_s ON shop_s.s_num=shopcomment_s.s_num LEFT JOIN orderdetail_s ON good_s.g_num = orderdetail_s.g_num WHERE shop_s.s_num = $data_shop_num";
 $sql = "SELECT 
             goods.g_num,
             goods.g_name,
