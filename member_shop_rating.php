@@ -5,24 +5,29 @@ header("Access-Control-Allow-Origin: *");
 
 
 
+
+
+$shop_num = $_GET['shop_num'] == "" ? "" : $_GET['shop_num'];
+
+
+
+
 //連結資料庫
 require_once("connMysql.php");
 
-//選擇餐廳的代碼、名稱、標語、和所有餐廳評分做平均
+
 $sql = "SELECT 
-            order.o_num,
-            shop.s_num,
-            shop.s_name,
-            order.o_datetime,
-            order.o_state
+            ROUND(AVG(s_rating),0) 's_rating' 
         FROM 
-            `order`
-        LEFT JOIN
-            shop
-        ON 
-            shop.s_num=order.s_num";
+            shopcomment
+        WHERE
+            s_num = $shop_num
+        GROUP BY 
+            shopcomment.s_num";
+
 
 $result = mysqli_query($link, $sql);
+
 
 if ($result) {
     // mysqli_num_rows方法可以回傳我們結果總共有幾筆資料
@@ -39,9 +44,12 @@ if ($result) {
     die($link->error);
 }
 
-echo(json_encode($datas)); //返回相應陣列
+
+echo(json_encode($datas));
 
 
-mysqli_close($link);//關閉資料庫
 
+
+
+mysqli_close($link)
 ?>

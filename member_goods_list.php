@@ -24,6 +24,7 @@ $sql = "SELECT
                 shop.s_name,
                 shop.s_slogan,
                 shop.s_estimatedtime,
+                goods.g_num,
                 goods.g_name,
                 goods.g_description,
                 goods.g_price,

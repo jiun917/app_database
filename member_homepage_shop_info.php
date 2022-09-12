@@ -13,7 +13,7 @@ $sql = "SELECT
             shop.s_num,
             shop.s_name,
             shop.s_slogan,
-            ROUND(AVG(s_rating),0) 's_rating' 
+            ROUND(AVG(shopcomment.s_rating),0) 's_rating' 
         FROM 
             shopcomment
         INNER JOIN 
