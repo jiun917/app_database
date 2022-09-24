@@ -21,7 +21,7 @@ $sql = "SELECT
         FROM 
             shopcomment
         WHERE
-            s_num = $shop_num
+            s_num = $shop_num AND shopcomment.s_rating != 0
         GROUP BY 
             shopcomment.s_num";
 

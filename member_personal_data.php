@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 header("Content-Type: text/html; charset=utf-8");
 date_default_timezone_set("Asia/Taipei");
 header("Access-Control-Allow-Origin: *");
@@ -21,7 +21,8 @@ $sql = "SELECT
             `point`,
             `birthday`,
             `address`,
-            `gender`
+            `gender`,
+            `avatar`
         FROM 
             `user`
         WHERE
@@ -37,6 +38,7 @@ if($row){
     $datas['birthday'] = $row['birthday'];
     $datas['address'] = $row['address'];
     $datas['gender'] = $row['gender'];
+    $datas['avatar'] = $row['avatar'];
 }
 
 echo json_encode($datas); 
@@ -47,4 +49,4 @@ echo json_encode($datas);
 
 
 mysqli_close($link)
-?>
+?> -->

@@ -4,6 +4,21 @@ date_default_timezone_set("Asia/Taipei");
 header("Access-Control-Allow-Origin: *");
 
 
+$rsp = array();
+//接收前端的資料
+$shop_num = $_GET['shop_num'] == "" ? "" : $_GET['shop_num'];
+
+
+
+$rsp = array();
+if($shop_num==""){
+    $rsp['ok']=false;
+    $rsp['err_msg']='系統錯誤';
+    echo json_encode($rsp);
+    exit();
+}
+
+
 //連結資料庫
 require_once("connMysql.php");
 
@@ -12,11 +27,14 @@ $sql = "SELECT
             user.name,
             order.o_num,
             order.o_datetime,
-            order.o_state
+            order.o_state,
+            order.o_discount
         FROM  `order`
         LEFT JOIN user
         ON 
-            order.user_num = user.user_num";
+            order.user_num = user.user_num
+        WHERE
+            order.s_num = $shop_num AND order.o_state != '已拒絕' AND order.o_state != '已取消' AND order.o_state != '已完成'";
 
 $result = mysqli_query($link, $sql);
 if ($result) {

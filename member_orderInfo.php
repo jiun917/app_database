@@ -23,12 +23,16 @@ require_once("connMysql.php");
 $sql = "SELECT 
             orderdetail.o_num,
             goods.g_name,
+            orderdetail.g_num,
             orderdetail.g_price,
             orderdetail.g_quantity,
             order.s_num,
             order.o_state,
+            order.o_discount,
+            order.o_datetime,
             shop.s_name,
-            shopcomment.s_rating
+            shop.s_logo,
+            shop.s_pic
         FROM  orderdetail
         LEFT JOIN goods
         ON 
@@ -39,9 +43,6 @@ $sql = "SELECT
         INNER JOIN shop
         ON
             order.s_num = shop.s_num
-        LEFT JOIN shopcomment
-        ON
-            shop.s_num = shopcomment.s_num
         WHERE 
             orderdetail.o_num = $order_num";
 

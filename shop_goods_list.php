@@ -4,15 +4,15 @@ date_default_timezone_set("Asia/Taipei");
 header("Access-Control-Allow-Origin: *");
 
 
-// $rsp = array();
-// //接收前端的資料
-// $data_shop_num = $_GET['data_shop_num'] == "" ? "" : $_GET['data_shop_num'];
-// if($data_shop_num==""){
-//     $rsp['ok']=false;
-//     $rsp['err_msg']='資料表名稱不可為空';
-//     echo json_encode($rsp);
-//     exit();
-// }
+$rsp = array();
+//接收前端的資料
+$s_num = $_GET['s_num'] == "" ? "" : $_GET['s_num'];
+if($s_num==""){
+    $rsp['ok']=false;
+    $rsp['err_msg']='資料表名稱不可為空';
+    echo json_encode($rsp);
+    exit();
+}
 
 //連結資料庫
 require_once("connMysql.php");
@@ -23,10 +23,11 @@ $sql = "SELECT
             goods.g_name,
             goods.g_description,
             goods.g_price,
-            goods.g_maketime
+            goods.g_maketime,
+            goods.g_pic
         FROM  goods
         where
-            s_num = 1 ";
+            s_num = $s_num ";
 
 $result = mysqli_query($link, $sql);
 if ($result) {

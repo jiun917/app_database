@@ -28,8 +28,9 @@ $sql = "SELECT
                 goods.g_name,
                 goods.g_description,
                 goods.g_price,
-                ROUND(AVG(IFNULL(shopcomment.s_rating,0)),0) 's_rating',
-                ROUND(AVG(IFNULL(orderdetail.g_rating,0)),0) 'g_rating'
+                goods.g_pic,
+                ROUND(AVG(shopcomment.s_rating),0) 's_rating',
+                ROUND(AVG(orderdetail.g_rating),0) 'g_rating'
         FROM  goods
         LEFT JOIN orderdetail
         ON 
@@ -41,7 +42,7 @@ $sql = "SELECT
         ON
             shop.s_num = shopcomment.s_num
         WHERE 
-            goods.s_num = $data_shop_num
+            goods.s_num = $data_shop_num 
         GROUP BY goods.g_num,shop.s_num";
 
 $result = mysqli_query($link, $sql);
@@ -59,6 +60,5 @@ if ($result) {
 }; // 從結果集中取得一行作為列舉陣列，存入row陣列中
 echo(json_encode($datas)); //返回相應陣列，不是用return
 
-mysqli_free_result($result);
 mysqli_close($link);
 ?>
