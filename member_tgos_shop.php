@@ -16,7 +16,8 @@ $sql = "SELECT
             s_num,
             s_name,
             s_longitude,
-            s_latitude
+            s_latitude,
+            s_logo
         FROM 
             shop";
 
