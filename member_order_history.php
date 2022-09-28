@@ -15,6 +15,7 @@ $sql = "SELECT
             shop.s_num,
             shop.s_name,
             shop.s_logo,
+            shop.s_pic,
             order.o_datetime,
             order.o_state
         FROM 
