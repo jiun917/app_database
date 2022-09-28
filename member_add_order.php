@@ -10,6 +10,8 @@ header("Access-Control-Allow-Origin: *");
 $user_num = $_GET['user_num'] == "" ? "" : $_GET['user_num'];
 $s_num = $_GET['s_num'] == "" ? "" : $_GET['s_num'];
 $date = $_GET['date'] == "" ? "" : $_GET['date'];
+$o_maketime = $_GET['o_maketime'] == "" ? "" : $_GET['o_maketime'];
+
 $o_discount = $_GET['o_discount'] == "" ? "" : $_GET['o_discount'];
 
 
@@ -19,9 +21,9 @@ require_once("connMysql.php");
 
 
 $sql = "INSERT INTO 
-            `order`(user_num,s_num,o_datetime,o_state,o_discount)
+            `order`(user_num,s_num,o_datetime,o_state,o_maketime,o_discount)
         VALUES
-            ('$user_num','$s_num','$date','未接單','$o_discount')";
+            ('$user_num','$s_num','$date','未接單','$o_maketime','$o_discount')";
 
 // $result = mysqli_query($link, $sql);
 if (mysqli_query($link, $sql)) {

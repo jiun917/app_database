@@ -23,6 +23,7 @@ require_once("connMysql.php");
 $sql = "SELECT 
             orderdetail.o_num,
             goods.g_name,
+            goods.g_pic,
             orderdetail.g_num,
             orderdetail.g_price,
             orderdetail.g_quantity,
@@ -30,9 +31,11 @@ $sql = "SELECT
             order.o_state,
             order.o_discount,
             order.o_datetime,
+            order.o_finishtime,
             shop.s_name,
             shop.s_logo,
-            shop.s_pic
+            shop.s_pic,
+            shop.s_address
         FROM  orderdetail
         LEFT JOIN goods
         ON 
