@@ -36,8 +36,8 @@ while ($row = mysqli_fetch_assoc($result))
 
 mysqli_close($link);//關閉資料庫
 
-$result = shell_exec('python tem.py ' . escapeshellarg($x));
+$result = shell_exec('py tem.py ' . escapeshellarg($x));
 $resultData = json_decode($result, true);
-echo($resultData)
-// echo (json_encode($resultData))
+$data['time'] = $resultData;
+echo (json_encode($data));
 ?>
